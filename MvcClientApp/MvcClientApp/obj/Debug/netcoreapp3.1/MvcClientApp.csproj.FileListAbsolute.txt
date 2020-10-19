@@ -154,5 +154,4 @@ C:\Users\user\source\repos\MvcClientApp\MvcClientApp\bin\Debug\netcoreapp3.1\log
 C:\Users\user\source\repos\MvcClientApp\MvcClientApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Log4Net.AspNetCore.dll
 C:\Users\user\source\repos\MvcClientApp\MvcClientApp\obj\Debug\netcoreapp3.1\MvcClientApp.csproj.CoreCompileInputs.cache
 C:\Users\user\source\repos\MvcClientApp\MvcClientApp\obj\Debug\netcoreapp3.1\MvcClientApp.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\user\source\repos\MvcClientApp\MvcClientApp\obj\Debug\netcoreapp3.1\Razor\Views\Meds\Reciept.cshtml.g.cs
 C:\Users\user\source\repos\MvcClientApp\MvcClientApp\bin\Debug\netcoreapp3.1\log4net.config

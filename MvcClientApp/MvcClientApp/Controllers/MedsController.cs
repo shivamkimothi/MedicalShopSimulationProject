@@ -131,31 +131,7 @@ namespace MvcClientApp.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Reciept(int id)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("https://localhost:44397/api/");
-                MediaTypeWithQualityHeaderValue contentType = new MediaTypeWithQualityHeaderValue("application/json");
-                client.DefaultRequestHeaders.Accept.Add(contentType);
-                HttpResponseMessage response = new HttpResponseMessage();
-                response = client.GetAsync("Orders").Result;
-
-
-                string stringData = response.Content.ReadAsStringAsync().Result;
-
-                var data = JsonConvert.DeserializeObject<IEnumerable<Orders>>(stringData);
-                foreach(var x in data)
-                {
-                    if (x.Mid == id)
-                    {
-                        return View(x);
-                    }
-                }
-
-                return View(data);
-            }
-        }
+       
         static string GetToken(string url, Users user)
         {
             var json = JsonConvert.SerializeObject(user);
