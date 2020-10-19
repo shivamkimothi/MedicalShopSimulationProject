@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MvcClientApp.Models.Medicine>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Mid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpiryDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantityRemaining)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpiryDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantityRemaining)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+
+            <td>
+                <!-- <a asp-action="Edit" asp-route-id="@item.Mid">Edit</a> |
+     <a asp-action="Details" asp-route-id="@item.Mid">Details</a> |
+     <a asp-action="Delete" asp-route-id="@item.Mid">Delete</a>-->
+                <a asp-action="Buy" asp-route-id="@item.Mid">Buy</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

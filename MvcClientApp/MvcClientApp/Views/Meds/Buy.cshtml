@@ -1,0 +1,15 @@
+﻿@model MvcClientApp.Models.ViewModel.OrderQuantityViewModel
+@{
+    ViewData["Title"] = "Buy";
+}
+
+<form asp-action="Buy">
+    <label asp-for="ProductId"></label>
+    <input asp-for="ProductId" />
+    <label asp-for="OrderId"></label>
+    <input asp-for="OrderId" />
+    <label asp-for="Quantity"></label>
+    <input asp-for="Quantity" />
+    <input type="submit" value="Buy" class="btn btn-success" />
+</form>
+
