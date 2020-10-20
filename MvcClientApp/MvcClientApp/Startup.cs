@@ -28,6 +28,12 @@ namespace MvcClientApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+
+            services.AddDistributedMemoryCache();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromSeconds(120);//You can set Time   
+            });
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
                options.TokenValidationParameters = new TokenValidationParameters
@@ -61,7 +67,7 @@ namespace MvcClientApp
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthentication();
 
             app.UseAuthorization();

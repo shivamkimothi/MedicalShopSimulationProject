@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MvcClientApp.Models;
@@ -35,9 +36,16 @@ namespace MvcClientApp.Controllers
         {
             string token = GetToken("https://localhost:44364/api/token", user);
 
-            if (token != null)
+            /*if (token != null)
             {
                 return RedirectToAction("Index", "Meds", new { name = token });
+            }*/
+            if (token != null)
+            {
+                HttpContext.Session.SetString("JWTtoken", token);
+                HttpContext.Session.SetString("Name", user.Email);
+                //ViewBag.Login = user.Username;
+                return RedirectToAction("Index", "Meds");
             }
             else
             {

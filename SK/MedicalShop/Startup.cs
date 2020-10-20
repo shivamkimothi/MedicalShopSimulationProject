@@ -45,7 +45,7 @@ namespace MedicalShop
             var connection = Configuration.GetConnectionString("medicalShopDatabase");
             services.AddDbContext<medicalShopContext>(x => x.UseSqlServer(connection));
             services.AddControllers();
-
+            /*
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
@@ -64,7 +64,7 @@ namespace MedicalShop
             {
                 options.AddPolicy("AdminRolePolicy", policy => policy.RequireClaim("Admin"));
 
-            });
+            });*/
 
 
             //services.AddMvc().AddControllersAsServices();

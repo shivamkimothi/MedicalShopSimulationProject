@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MedicalShop.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class MedicinesController : ControllerBase

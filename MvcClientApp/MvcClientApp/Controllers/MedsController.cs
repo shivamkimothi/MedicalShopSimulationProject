@@ -7,6 +7,7 @@ using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MvcClientApp.Models;
 using MvcClientApp.Models.ViewModel;
@@ -17,24 +18,36 @@ namespace MvcClientApp.Controllers
 {
     public class MedsController : Controller
     {
+        public bool CheckValid()
+        {
+            if (HttpContext.Session.GetString("JWTtoken") != null)
+            {
+                return true;
+            }
+            return false;
+        }
 
         public IActionResult Index()
         {
-            Users obj = new Users { Email = "admin", Password = "admin" };
-            using (HttpClient client = new HttpClient())
+            //Users obj = new Users { Email = "admin", Password = "admin" };
+            if (CheckValid())
             {
-                var token = GetToken("https://localhost:44364/api/token", obj);
-                client.BaseAddress = new Uri("https://localhost:44335/api/");
-                // MediaTypeWithQualityHeaderValue contentType = new MediaTypeWithQualityHeaderValue("application/json");
-                //client.DefaultRequestHeaders.Accept.Add(contentType);
-                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                HttpResponseMessage response = new HttpResponseMessage();
-                response = client.GetAsync("Medicines").Result;
-                string stringData = response.Content.ReadAsStringAsync().Result;
-                var data = JsonConvert.DeserializeObject<IEnumerable<Medicine>>(stringData);
-                return View(data);
+                using (HttpClient client = new HttpClient())
+                {
+                    //var token = GetToken("https://localhost:44364/api/token", obj);
+                    client.BaseAddress = new Uri("https://localhost:44335/api/");
+                    /*// MediaTypeWithQualityHeaderValue contentType = new MediaTypeWithQualityHeaderValue("application/json");
+                    //client.DefaultRequestHeaders.Accept.Add(contentType);
+                    client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));*/
+                    HttpResponseMessage response = new HttpResponseMessage();
+                    response = client.GetAsync("Medicines").Result;
+                    string stringData = response.Content.ReadAsStringAsync().Result;
+                    var data = JsonConvert.DeserializeObject<IEnumerable<Medicine>>(stringData);
+                    return View(data);
+                }
             }
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Buy(int id)
@@ -74,12 +87,12 @@ namespace MvcClientApp.Controllers
                 List<Orders> o = new List<Orders>();
                 Medicine med = new Medicine();
                 List<Medicine> l = new List<Medicine>();
-                var token = GetToken("https://localhost:44364/api/token", obj);
+                //var token = GetToken("https://localhost:44364/api/token", obj);
                 client.BaseAddress = new Uri("https://localhost:44335/api/");
                 // MediaTypeWithQualityHeaderValue contentType = new MediaTypeWithQualityHeaderValue("application/json");
                 //client.DefaultRequestHeaders.Accept.Add(contentType);
-                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+               /* client.DefaultRequestHeaders.Add("Authorization", "Bearer " + token);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));*/
 
                 using (var response = await client.GetAsync("https://localhost:44335/api/medicines/" + oqvm.ProductId))
                 {

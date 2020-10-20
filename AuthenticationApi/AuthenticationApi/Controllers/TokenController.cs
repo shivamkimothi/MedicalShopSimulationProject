@@ -51,10 +51,11 @@ namespace AuthenticationApi.Controllers
                 new Claim(ClaimTypes.NameIdentifier, userInfo.Email.ToString()),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
+            /*
             if (userInfo.Email == "admin!@123")
             {
                 claims.Add(new Claim(ClaimTypes.Role, "Admin"));
-            }
+            }*/
 
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
               _config["Jwt:Issuer"],
