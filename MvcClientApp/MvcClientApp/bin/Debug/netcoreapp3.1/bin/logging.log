@@ -36,3 +36,15 @@ Newtonsoft.Json.JsonReaderException: Unexpected character encountered while pars
 INFO  08:50:20 Application started. Press Ctrl+C to shut down.
 INFO  08:50:20 Hosting environment: Development
 INFO  08:50:20 Content root path: C:\Users\user\source\repos\MvcClientApp\MvcClientApp
+INFO  10:12:16 Application started. Press Ctrl+C to shut down.
+INFO  10:12:16 Hosting environment: Development
+INFO  10:12:16 Content root path: C:\Users\user\source\repos\MvcClientApp\MvcClientApp
+INFO  06:38:39 Application started. Press Ctrl+C to shut down.
+INFO  06:38:39 Hosting environment: Development
+INFO  06:38:39 Content root path: C:\Users\user\source\repos\MvcClientApp\MvcClientApp
+INFO  06:49:20 Application started. Press Ctrl+C to shut down.
+INFO  06:49:21 Hosting environment: Development
+INFO  06:49:21 Content root path: C:\Users\user\source\repos\MvcClientApp\MvcClientApp
+INFO  06:52:37 Application started. Press Ctrl+C to shut down.
+INFO  06:52:37 Hosting environment: Development
+INFO  06:52:37 Content root path: C:\Users\user\source\repos\MvcClientApp\MvcClientApp

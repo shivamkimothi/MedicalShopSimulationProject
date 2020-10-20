@@ -131,6 +131,20 @@ namespace MvcClientApp.Controllers
             return RedirectToAction("Index");
         }
 
+        public async Task<IActionResult> Reciept(int id)
+        {
+            Orders o = new Orders();
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.GetAsync("https://localhost:44397/api/Orders/" + id))
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    o = JsonConvert.DeserializeObject<Orders>(apiResponse);
+                }
+            }
+            return View(o);
+        }
+
        
         static string GetToken(string url, Users user)
         {
