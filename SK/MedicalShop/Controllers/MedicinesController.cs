@@ -41,6 +41,7 @@ namespace MedicalShop.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Medicine>> GetMedicine()
         {
+            _log4net.Info(nameof(GetMedicine) + " method invoked from " + nameof(MedicinesController));
             return Ok(_medicineService.GetMedicine());
             //return await _context.Medicine.ToListAsync();
         }
@@ -83,6 +84,7 @@ namespace MedicalShop.Controllers
             {
                 //await _context.SaveChangesAsync();
                 _medicineService.PutMedicine(id, medicine);
+                _log4net.Info("Updated the details of medicine of id"+ nameof(id) + "from " + nameof(MedicinesController));
             }
             catch (DbUpdateConcurrencyException)
             {

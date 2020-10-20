@@ -40,6 +40,7 @@ namespace MvcClientApp.Controllers
             {
                 return RedirectToAction("Index", "Meds", new { name = token });
             }*/
+            
             if (token != null)
             {
                 HttpContext.Session.SetString("JWTtoken", token);
@@ -49,6 +50,8 @@ namespace MvcClientApp.Controllers
             }
             else
             {
+                ModelState.Clear();
+                ModelState.AddModelError(string.Empty, "Username or Password is Incorrect");
                 ViewBag.invalid = "UserId or Password invalid";
                 return View();
             }
