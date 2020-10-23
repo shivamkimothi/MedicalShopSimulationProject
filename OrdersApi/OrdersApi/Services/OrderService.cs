@@ -26,7 +26,7 @@ namespace OrdersApi.Services
 
         public IQueryable<Orders> DeleteOrders(int id)
         {
-            IQueryable<Orders> orders = _context.Orders.Where(p => p.Mid == id);
+            IQueryable<Orders> orders = _context.Orders.Where(p => p.Oid == id);
             _context.Orders.Remove(orders.FirstOrDefault());
             _context.SaveChangesAsync();
             return orders;
@@ -39,12 +39,12 @@ namespace OrdersApi.Services
 
         public IQueryable<Orders> GetOrders(int id)
         {
-            return _context.Orders.Where(p => p.Mid == id);
+            return _context.Orders.Where(p => p.Oid == id);
         }
 
         public bool OrdersExists(int id)
         {
-            return _context.Orders.Any(e => e.Mid == id);
+            return _context.Orders.Any(e => e.Oid == id);
         }
 
         public Orders PostOrders(Orders orders)

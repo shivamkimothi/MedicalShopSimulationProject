@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
+using Microsoft.Extensions.DependencyInjection;
 using MvcClientApp.Models;
 using MvcClientApp.Models.ViewModel;
 using Newtonsoft.Json;
@@ -18,6 +20,8 @@ namespace MvcClientApp.Controllers
 {
     public class MedsController : Controller
     {
+
+        public int idq;
         public bool CheckValid()
         {
             if (HttpContext.Session.GetString("JWTtoken") != null)
@@ -80,10 +84,11 @@ namespace MvcClientApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Buy(OrderQuantityViewModel oqvm)
         {
-            Users obj = new Users { Email = "admin", Password = "admin" };
+            //Users obj = new Users { Email = "admin", Password = "admin" };
+            Orders ord = new Orders();
             using (HttpClient client = new HttpClient())
             {
-                Orders ord = new Orders();
+                
                 List<Orders> o = new List<Orders>();
                 Medicine med = new Medicine();
                 List<Medicine> l = new List<Medicine>();
@@ -105,6 +110,7 @@ namespace MvcClientApp.Controllers
                 ord.Oid = oqvm.OrderId;
                 ord.Totalcost = l[0].Price * oqvm.Quantity;
                 ord.Quantity = oqvm.Quantity;
+                ord.M = null;
                // l[0].QuantityRemaining = l[0].QuantityRemaining - ord.Quantity;
 
                 StringContent content = new StringContent(JsonConvert.SerializeObject(ord), Encoding.UTF8, "application/json");
@@ -140,21 +146,32 @@ namespace MvcClientApp.Controllers
                 }
 
 
+
+
+
+
             }
-            return RedirectToAction("Index");
+
+            return View("Reciept", ord);
         }
 
         public async Task<IActionResult> Reciept(int id)
         {
             Orders o = new Orders();
+            
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync("https://localhost:44397/api/Orders/" + id))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
+                    ModelState.AddModelError(string.Empty, apiResponse);
                     o = JsonConvert.DeserializeObject<Orders>(apiResponse);
+                     
                 }
+                
+
             }
+
             return View(o);
         }
 

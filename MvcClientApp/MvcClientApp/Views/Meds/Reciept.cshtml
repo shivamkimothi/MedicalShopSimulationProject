@@ -10,22 +10,34 @@
     <h4>Orders</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Oid)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Oid)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Mid)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Mid)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Dateoforder)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Dateoforder)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Quantity)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Quantity)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Totalcost)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Totalcost)
         </dd>
 
